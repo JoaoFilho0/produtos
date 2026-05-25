@@ -1,13 +1,17 @@
 package com.ifce.loja.model;
 
-import jakarta.persistence.*;
+import com.ifce.loja.dto.ProdutoRequestDTO;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "produto")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,4 +26,10 @@ public class Produto {
     private double preco;
 
     private String categoria;
+
+    public Produto(ProdutoRequestDTO produtoDTO) {
+        this.nome = produtoDTO.nome();
+        this.preco = produtoDTO.preco();
+        this.categoria = produtoDTO.categoria();
+    }
 }
